@@ -5,7 +5,7 @@ const { join } = require('path')
 const app = express()
 
 // Middleware
-app.use(express.static(join(__dirname, 'public')))
+app.use(express.static(join(__dirname, 'public', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
@@ -49,6 +49,6 @@ axios.get(newsUrl)
   //console.log($('article').children('div').children('div').children('div').children('a').attr('href'))
 })
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3001)
 
 
