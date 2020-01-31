@@ -5,31 +5,35 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
+import HeadlinesContext from '../../utils/HeadlinesContext'
+
 const Headline = () => {
 
-  return (
-    <Card variant="outlined">
-      <CardHeader 
-       title={
-        <Typography variant="h5" component="h2">
-          Headline: insert head line here
-        </Typography>
-       }
-       subheader={
-        <Typography variant="body2" component="p">
-          Summary: insert summary here
-        </Typography>
-       }
-       action={
-        <Button variant="outlined" size="small">
-          Save Article
-        </Button>
-       }
-      />
-      <CardContent>
-      </CardContent>
+  const { articles, getArticles } = React.useContext(HeadlinesContext)
 
-    </Card>
+  console.log()
+  return (
+    <div onLoad={getArticles}>
+      <Card variant="outlined" >
+        <CardHeader 
+        title={
+          <Typography variant="h5" component="h2">
+            Headline: insert head line here
+          </Typography>
+        }
+        subheader={
+          <Typography variant="body2" component="p">
+            Summary: insert summary here
+          </Typography>
+        }
+        action={
+          <Button variant="outlined" size="small">
+            Save Article
+          </Button>
+        }
+        />
+      </Card>
+    </div>
   )
 }
 

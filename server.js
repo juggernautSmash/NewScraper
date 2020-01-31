@@ -9,7 +9,7 @@ app.use(express.static(join(__dirname, 'public', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-//require('./routes')(app)
+require('./routes')(app)
 
 const axios = require('axios')
 const cheerio = require('cheerio')
