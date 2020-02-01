@@ -1,28 +1,38 @@
 import React from 'react'
 import axios from 'axios'
-import cheerio from 'cheerio'
+import Navbar from '../../components/Navbar'
 import Headlines from '../../components/Headlines'
 import HeadlinesContext from '../../utils/HeadlinesContext'
 
 const LandingPage = _ => {
 
   const [state, setState] = React.useState({
-    artilces: [],
+    articles: [],
     isSaved: false
   })
 
-  state.pushArticle = article => {
-    let articles = JSON.parse(JSON.stringify(state.articles))
-    articles.push(article)
-    setState({ ...state, articles })
-  }
 
-  state.getArticles = _ => {
+  state.getArticles = async _ => {
     console.log('running getArticles')
 
-    axios.get('/headlines')
-  } // end getArticles
+    const news = await axios.get('/api/headlines')
+    .then( ({data: articles}) => {
+      console.log('axios .get hit')
+      console.log(articles)
 
+      return articles
+    })
+    .catch( e => console.error(e))
+    
+    setState({ ...state, articles: news})
+    console.log('state articles is now...')
+    console.log(state.articles)
+    setTimeout(() => console.log(' article state after 3 seconds', state.article), 3000)
+  }
+
+  state.saveArticle = e => {
+    console.log(e.target.dataset.headlines)
+  }
   // React.useEffect( () => {
   //   state.getArticles()
   //   console.log(state.articles)
@@ -30,6 +40,7 @@ const LandingPage = _ => {
 
   return (
     <HeadlinesContext.Provider value={state}>
+      <Navbar />
       <Headlines />
     </HeadlinesContext.Provider>
   )

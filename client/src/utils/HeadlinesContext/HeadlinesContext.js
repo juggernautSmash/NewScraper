@@ -2,7 +2,9 @@ import React from 'react'
 
 const HeadlinesContext = React.createContext({
   articles: [],
-  getArticles: () => {}
+  isSaved: Boolean,
+  getArticles: () => {},
+  saveArticle:  () => {}
 })
 
 export default HeadlinesContext
