@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -27,8 +29,12 @@ const NavBar = () => {
           <Typography variant="h6">
             News Scraper App
           </Typography>
+          <Link to="/">
           <Button variant="outlined" color="secondary" onClick={ getArticles }>Get Articles</Button>
-          <Button variant="outlined" color="inherit">Saved Articles</Button>
+          </Link>
+          <Link to="/saved">
+          <Button variant="outlined">Saved Articles</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

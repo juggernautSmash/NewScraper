@@ -4,7 +4,8 @@ const HeadlinesContext = React.createContext({
   articles: [],
   isSaved: Boolean,
   getArticles: () => {},
-  saveArticle:  () => {}
+  saveArticle:  () => {},
+  deleteArticle: () => {}
 })
 
 export default HeadlinesContext

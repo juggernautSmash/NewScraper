@@ -2,7 +2,6 @@ import React from 'react'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 import './Headlines.css'
@@ -12,13 +11,12 @@ const Headline = () => {
 
   const { articles, saveArticle } = React.useContext(HeadlinesContext)
 
-  console.log()
   return (
-    <div >
-      { articles ? 
+    <div>
+      { articles.length ? 
       ( 
         articles.map( ({ headline, summary, url}, i) =>
-          <Card key={i} id={`article[${i}]`} variant="outlined" className="card">
+          <Card key={i} id={`article${i}`} variant="outlined" className="card">
           <CardHeader 
           title={
             <Typography variant="h5" component="h2">
@@ -31,9 +29,9 @@ const Headline = () => {
             </Typography>
           }
           action={
-            <Button variant="outlined" size="small" onClick={saveArticle} data-headline={headline} data-summary={summary} data-url={url}>
+            <button variant="outlined" size="small" onClick={saveArticle} id={i}>
               Save Article
-            </Button>
+            </button>
           }
           />
           <CardContent>
@@ -43,7 +41,7 @@ const Headline = () => {
           </CardContent>
           </Card>
         )
-      ) : null
+      ) : <h1>Press the "Get Articles" button to get articles</h1>
       }
     </div>
   )

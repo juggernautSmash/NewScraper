@@ -20,10 +20,10 @@ const LandingPage = _ => {
       console.log('axios .get hit')
       console.log(articles)
 
-      return articles
+      return articles ? articles : []
     })
     .catch( e => console.error(e))
-    
+
     setState({ ...state, articles: news})
     console.log('state articles is now...')
     console.log(state.articles)
@@ -31,7 +31,10 @@ const LandingPage = _ => {
   }
 
   state.saveArticle = e => {
-    console.log(e.target.dataset.headlines)
+    console.log('save articled id: ', e.target.id)
+    console.log('article info is ', state.articles[e.target.id])
+    axios.post('/api/news', state.articles[e.target.id])
+    .then( savedPost => console.log(savedPost.data))
   }
   // React.useEffect( () => {
   //   state.getArticles()
